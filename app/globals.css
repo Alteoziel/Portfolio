@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f3f6f5;
+  --foreground: #1a2421;
+  --muted: #5c6b66;
+  --accent: #0d7377;
+  --accent-hover: #0a5c5f;
+  --surface: rgba(255, 255, 255, 0.72);
+  --border: rgba(26, 36, 33, 0.12);
+  --ring: rgba(13, 115, 119, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, white);
+  color: var(--foreground);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 0.7s ease-out 0.12s both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.7s ease-out 0.24s both;
+}
+
+.bg-atmosphere {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 80% 55% at 15% -10%, rgba(13, 115, 119, 0.18), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 95% 10%, rgba(70, 110, 140, 0.16), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(13, 115, 119, 0.08), transparent 55%),
+    linear-gradient(180deg, #eef3f2 0%, #f3f6f5 40%, #e9eef3 100%);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(26, 36, 33, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 36, 33, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-up-delay,
+  .animate-fade-up-delay-2 {
+    animation: none;
+  }
+}
