@@ -44,17 +44,11 @@ Edit [`components/About.tsx`](components/About.tsx):
 
 **Done looks like:** visitors can read who you are; the green TODO box is gone.
 
-### 3. Build the project card
+### 3. Project cards
 
-Edit [`components/ProjectCard.tsx`](components/ProjectCard.tsx):
+[`components/ProjectCard.tsx`](components/ProjectCard.tsx) renders each item from `site.projects` (title, blurb, tags, link). Add or edit projects in [`content/site.ts`](content/site.ts).
 
-- [ ] Render `project.title`, `project.blurb`, `project.tags`, and `project.href`
-- [ ] Make the card a clear clickable project link
-- [ ] Keep styling simple and consistent with the rest of the page
-
-The list wrapper in [`components/Projects.tsx`](components/Projects.tsx) is already wired — you only need the card.
-
-**Done looks like:** the Projects grid shows real cards, not TODO stubs.
+**External links tip:** always include `https://` (e.g. LinkedIn). Without it, the browser treats the URL as a path on your own domain.
 
 ### 4. Deploy on Vercel (you own this step)
 
@@ -71,15 +65,16 @@ The list wrapper in [`components/Projects.tsx`](components/Projects.tsx) is alre
 - Shared layout, fonts (Syne + IBM Plex Sans), CSS variables, atmosphere background
 - Header, Hero, Projects list wrapper, Hobbies, Links, Contact, Footer
 - Content model in `content/site.ts` with placeholders
-- Guided starters for `About.tsx` and `ProjectCard.tsx` (not finished implementations)
+- Guided starter for `About.tsx` (not finished — you build this)
+- Project cards wired through `ProjectCard.tsx`
 
 ## Project map
 
 | Path | Role |
 |---|---|
 | `content/site.ts` | **Your** content hub |
-| `components/About.tsx` | **Your** hand-built section |
-| `components/ProjectCard.tsx` | **Your** hand-built card |
+| `components/About.tsx` | **Your** hand-built section (still a YOUR TURN stub) |
+| `components/ProjectCard.tsx` | Renders one project (title, blurb, tags, link) |
 | `components/Projects.tsx` | List that maps `site.projects` → `ProjectCard` |
 | `app/page.tsx` | Assembles all sections |
 | `app/globals.css` | Design tokens + light motion |
