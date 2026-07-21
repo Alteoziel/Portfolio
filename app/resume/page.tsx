@@ -32,8 +32,7 @@ export default function ResumePage() {
               Resume
             </h1>
             <p className="mt-2 text-muted">
-              Clean page view — no browser PDF chrome. Download if you want the
-              file.
+              View my resume on the page, or download the PDF.
             </p>
           </div>
           <a
