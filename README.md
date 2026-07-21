@@ -54,9 +54,21 @@ Edit [`components/ProjectCard.tsx`](components/ProjectCard.tsx):
 
 The list wrapper in [`components/Projects.tsx`](components/Projects.tsx) is already wired — you only need the card.
 
-**Done looks like:** the Projects grid shows real cards, not TODO stubs.
+**Done looks like:** the Projects grid shows your cards, not TODO stubs.
 
-### 4. Deploy on Vercel (you own this step)
+### 4. Build the resume PDF viewer
+
+Edit [`components/ResumeViewer.tsx`](components/ResumeViewer.tsx):
+
+- [ ] Drop your real PDF at `public/resume.pdf` (placeholder is fine while coding)
+- [ ] Implement `Document` + `Page` from `react-pdf` following the file’s comment checklist
+- [ ] Confirm `/resume` shows page canvases (no browser PDF toolbar)
+
+The route shell (`app/resume/page.tsx`), download button, and `ResumeViewerLoader` (client-only load) are already wired — you own the viewer.
+
+**Done looks like:** green YOUR TURN box is gone; your resume pages render cleanly.
+
+### 5. Deploy on Vercel (you own this step)
 
 1. Push this branch / merge to GitHub (`alteoziel/portfolio`).
 2. Go to [vercel.com](https://vercel.com) → **Add New Project** → import this repo.
@@ -71,7 +83,9 @@ The list wrapper in [`components/Projects.tsx`](components/Projects.tsx) is alre
 - Shared layout, fonts (Syne + IBM Plex Sans), CSS variables, atmosphere background
 - Header, Hero, Projects list wrapper, Hobbies, Links, Contact, Footer
 - Content model in `content/site.ts` with placeholders
-- Guided starters for `About.tsx` and `ProjectCard.tsx` (not finished implementations)
+- `/resume` route shell + download button + client-only loader
+- Guided starters for `About.tsx`, `ProjectCard.tsx`, and `ResumeViewer.tsx` (not finished implementations)
+- `react-pdf` dependency installed (you still write the viewer)
 
 ## Project map
 
@@ -80,27 +94,26 @@ The list wrapper in [`components/Projects.tsx`](components/Projects.tsx) is alre
 | `content/site.ts` | **Your** content hub |
 | `components/About.tsx` | **Your** hand-built section |
 | `components/ProjectCard.tsx` | **Your** hand-built card |
+| `components/ResumeViewer.tsx` | **Your** hand-built PDF viewer |
+| `components/ResumeViewerLoader.tsx` | Client-only loader for the viewer (`ssr: false`) |
 | `components/Projects.tsx` | List that maps `site.projects` → `ProjectCard` |
 | `app/page.tsx` | Assembles all sections |
-| `app/globals.css` | Design tokens + light motion |
+| `app/resume/page.tsx` | Resume route shell (Header, Download, loader) |
+| `app/globals.css` | Design tokens + light motion + `.resume-page` styles |
 
-## Resume PDF
+## Resume PDF — mental model (interview prep)
 
-The site shows your resume as clean page canvases on [`/resume`](app/resume/page.tsx) (no browser PDF toolbar).
+**Problem:** iframe/`<embed>` show the browser’s PDF UI (toolbar, weird chrome).
 
-1. Export / save your resume as a PDF.
-2. Replace the placeholder file: put it at **`public/resume.pdf`** (same name).
-3. Leave `site.links.resume` as `"/resume.pdf"` unless you rename the file.
-4. Open `/resume` — pages render like paper; use **Download PDF** for the raw file.
+**Approach:**
 
-How it works:
+1. Put the file in `public/` → Next serves it at `/resume.pdf` (static asset, no API).
+2. On `/resume`, render pages with **pdf.js** (via `react-pdf`) onto canvases.
+3. Keep a normal `<a download>` for people who want the raw PDF.
 
-| Piece | Role |
-|---|---|
-| `public/resume.pdf` | Your uploaded file (static asset) |
-| `components/ResumeViewer.tsx` | Renders PDF pages with `react-pdf` / pdf.js |
-| `app/resume/page.tsx` | Route visitors open |
-| Header / Links → `/resume` | Entry points from the home page |
+**Why client-only?** pdf.js needs the DOM/canvas/workers. `ResumeViewerLoader` uses `next/dynamic` with `ssr: false` so Next doesn’t try to run that on the server.
+
+**Your job:** implement `ResumeViewer.tsx`. Say the soundbite in that file’s comment block out loud until it feels natural.
 
 ## Adding a real project later
 

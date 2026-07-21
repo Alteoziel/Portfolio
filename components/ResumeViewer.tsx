@@ -1,11 +1,52 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
-
-pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+/**
+ * ============================================================
+ * YOUR TURN — build the clean PDF resume viewer
+ * ============================================================
+ * Goal: show public/resume.pdf as paper-like pages — NOT the browser’s
+ * ugly PDF toolbar (that’s what you get from a bare <iframe>).
+ *
+ * Interview soundbite (practice saying this out loud):
+ *   “I put the PDF in /public so Next.js serves it as a static file.
+ *    Instead of iframe-embedding it, I render pages with pdf.js via
+ *    react-pdf so each page becomes a canvas. That looks clean and
+ *    avoids browser PDF chrome. The viewer is client-only because
+ *    pdf.js needs browser APIs.”
+ *
+ * Why these pieces exist:
+ * 1. public/resume.pdf  →  URL /resume.pdf (static asset)
+ * 2. react-pdf Document → loads the PDF, tells you how many pages
+ * 3. react-pdf Page     → draws one page onto a <canvas>
+ * 4. pdfjs worker       → PDF parsing runs off the main thread
+ * 5. "use client"       → this file must run in the browser
+ *
+ * Steps (do them in order):
+ * 1. Keep this file as a Client Component (`"use client"` stays).
+ * 2. Import { Document, Page, pdfjs } from "react-pdf"
+ *    and the two CSS files:
+ *      import "react-pdf/dist/Page/AnnotationLayer.css"
+ *      import "react-pdf/dist/Page/TextLayer.css"
+ * 3. Point the worker at a CDN (pdf.js needs this once per module):
+ *      pdfjs.GlobalWorkerOptions.workerSrc =
+ *        `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
+ * 4. Accept a `file` prop (string path like "/resume.pdf").
+ * 5. useState for numPages (start at 0).
+ * 6. Render <Document file={file} onLoadSuccess={...}>
+ *    In onLoadSuccess, setNumPages from the callback argument.
+ * 7. Inside Document, map 1..numPages into <Page pageNumber={n} width={...} />
+ * 8. Style pages with className "resume-page" (CSS already in globals.css)
+ *    so they look like white paper with a soft shadow.
+ *
+ * Stretch (optional, still good interview material):
+ * - Responsive width with useEffect + window.innerWidth
+ * - onLoadError UI if the PDF is missing
+ * - loading= prop on Document / Page
+ *
+ * Done looks like: /resume shows your PDF pages as canvases, no PDF toolbar.
+ * Delete this comment block when you are finished.
+ * ============================================================
+ */
 
 type ResumeViewerProps = {
   /** Path under /public, e.g. "/resume.pdf" */
@@ -13,75 +54,30 @@ type ResumeViewerProps = {
 };
 
 export function ResumeViewer({ file }: ResumeViewerProps) {
-  const [numPages, setNumPages] = useState(0);
-  const [width, setWidth] = useState(720);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const updateWidth = () => {
-      const max = Math.min(window.innerWidth - 40, 820);
-      setWidth(Math.max(280, max));
-    };
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
-  }, []);
-
-  const onLoadSuccess = useCallback(({ numPages: next }: { numPages: number }) => {
-    setNumPages(next);
-    setError(null);
-  }, []);
-
-  const onLoadError = useCallback((err: Error) => {
-    console.error(err);
-    setError(
-      "Could not load the resume PDF. Drop your file at public/resume.pdf and refresh.",
-    );
-  }, []);
-
   return (
-    <div className="mx-auto flex w-full max-w-[860px] flex-col items-center gap-6">
-      {error ? (
-        <div
-          role="alert"
-          className="w-full border border-border bg-surface px-5 py-8 text-center text-sm text-muted"
-        >
-          <p className="text-foreground" style={{ fontWeight: 600 }}>
-            Resume not found
-          </p>
-          <p className="mt-2">{error}</p>
-        </div>
-      ) : null}
-
-      <Document
-        file={file}
-        onLoadSuccess={onLoadSuccess}
-        onLoadError={onLoadError}
-        loading={
-          <p className="py-16 text-sm text-muted" aria-live="polite">
-            Loading resume…
-          </p>
-        }
-        className="flex w-full flex-col items-center gap-6"
-      >
-        {Array.from({ length: numPages }, (_, index) => (
-          <Page
-            key={`page-${index + 1}`}
-            pageNumber={index + 1}
-            width={width}
-            renderAnnotationLayer
-            renderTextLayer
-            className="resume-page overflow-hidden bg-white shadow-[0_18px_50px_-24px_rgba(26,36,33,0.45)]"
-            loading={
-              <div
-                className="bg-white shadow-[0_18px_50px_-24px_rgba(26,36,33,0.45)]"
-                style={{ width, height: width * 1.294 }}
-                aria-hidden
-              />
-            }
-          />
-        ))}
-      </Document>
+    <div className="mx-auto w-full max-w-[860px]">
+      <div className="rounded-lg border border-dashed border-accent/40 bg-accent/5 px-5 py-8 sm:px-8">
+        <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-accent">
+          YOUR TURN · ResumeViewer.tsx
+        </p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
+          Implement the pdf.js viewer here. The file prop is already wired
+          from the resume page as{" "}
+          <code className="rounded bg-foreground/5 px-1 py-0.5 text-foreground">
+            {file}
+          </code>
+          . Follow the comment block at the top of this file — that is your
+          checklist. When it works, replace this box with{" "}
+          <code className="rounded bg-foreground/5 px-1 py-0.5 text-foreground">
+            Document
+          </code>{" "}
+          +{" "}
+          <code className="rounded bg-foreground/5 px-1 py-0.5 text-foreground">
+            Page
+          </code>{" "}
+          from react-pdf.
+        </p>
+      </div>
     </div>
   );
 }

@@ -45,6 +45,7 @@ export default function ResumePage() {
         </div>
 
         <ResumeViewerLoader file={site.links.resume} />
+        {/* YOUR TURN: implement components/ResumeViewer.tsx (loader is wired) */}
       </main>
       <Footer />
     </div>
