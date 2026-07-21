@@ -29,26 +29,25 @@ export type Hobby = {
 };
 
 export const site = {
-  name: "Your Name",
-  tagline: "Builder of things · curious about everything",
-  bio: "Replace this with a short bio. Mention what you like building, what you are learning, and a hobby or two so visitors get a sense of you beyond a resume.",
-  location: "Somewhere on Earth",
+  name: "Aedin Richardson",
+  tagline: "Code. Circuits. AI.",
+  bio: "Full-stack developer building at the intersection of intelligent software, microcontrollers, and AI. Driven by a lifelong curiosity for how things work—from early game dev to modern robotics—I love solving complex problems and collaborating with great people. Outside of tech, you'll usually find me out on the trail, spending time with family, or playing board games.",
+  location: "Cedar City, Utah",
 
   links: {
-    github: "https://github.com/your-username",
-    linkedin: "https://www.linkedin.com/in/your-username",
-    email: "you@example.com",
+    github: "https://github.com/Alteoziel",
+    linkedin: "www.linkedin.com/in/aedin-richardson",
+    email: "aedinrichardson@gmail.com",
     /** Put a PDF at public/resume.pdf, or point this at an external URL */
-    resume: "/resume.pdf",
+    resume: "/aedin_richardson_resume.pdf",
   },
 
   projects: [
-    {
-      title: "Placeholder Project One",
-      blurb:
-        "Short description of what you built and why it mattered. Swap this when you have a real hobby project ready.",
-      tags: ["React", "TypeScript"],
-      href: "https://github.com/your-username",
+        {
+      title: '"Shadow AI" Gateway',
+      blurb: "Pre-flight security proxy for LLM traffic — intercepts prompts before they leave the network so PII and secrets never reach public AI APIs.",
+      tags: ["Python", "FastAPI", "Security"],
+      href: "https://github.com/Alteoziel/Shadow-AI-Gateway",
     },
     {
       title: "Placeholder Project Two",
@@ -68,12 +67,16 @@ export const site = {
 
   hobbies: [
     {
-      title: "Hobby one",
-      blurb: "A sentence about something you enjoy outside of coding.",
+      title: "Mountain Biking",
+      blurb: "If you see me riding a bike, it either means I'm commuting around town or I'm on a trail enjoying the weather and nature with someone not too far behind me.",
     },
     {
-      title: "Hobby two",
-      blurb: "Another interest — music, climbing, photography, games, etc.",
+      title: "Board games and video games",
+      blurb: "Almost every day you can find me hanging out with my wife or a friend playing a game of any type.",
+    },
+    {
+      title: "Engineering",
+      blurb: "I love learning how the world works and not a day goes by that I'm not spending at least a couple hours trying to design a solution to a problem that's been bugging me, building an animatronic, or exploring the limits of AI.",
     },
   ] satisfies Hobby[],
 } as const;
