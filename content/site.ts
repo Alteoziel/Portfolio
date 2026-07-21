@@ -36,7 +36,12 @@ export const site = {
 
   links: {
     github: "https://github.com/Alteoziel",
-    linkedin: "www.linkedin.com/in/aedin-richardson",
+    /**
+     * External links need the protocol (`https://`).
+     * Without it, the browser treats the string as a path on YOUR site:
+     *   "www.linkedin.com/..."  →  yoursite.com/www.linkedin.com/...
+     */
+    linkedin: "https://www.linkedin.com/in/aedin-richardson",
     email: "aedinrichardson@gmail.com",
     /** Put a PDF at public/resume.pdf, or point this at an external URL */
     resume: "/aedin_richardson_resume.pdf",

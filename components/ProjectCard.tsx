@@ -5,58 +5,47 @@ type ProjectCardProps = {
 };
 
 /**
- * ============================================================
- * YOUR TURN — build this ProjectCard
- * ============================================================
- * Goal: map project data → UI (title, blurb, tags, link).
+ * Maps one `project` from content/site.ts → a clickable card.
  *
- * You receive one `project` prop with:
- * - project.title
- * - project.blurb
- * - project.tags (string[])
- * - project.href
- * - project.image? (optional — skip until you have screenshots)
+ * Why blurbs were missing before: this file used to be a YOUR TURN stub that
+ * only printed instructional text. The blurb lived in site.ts the whole time —
+ * the UI just never rendered `{project.blurb}`.
  *
- * Suggested structure:
- * 1. An <article> or <a href={project.href}> wrapper (cards are OK here —
- *    this is an interactive project link)
- * 2. Title + blurb
- * 3. A row of tags (map over project.tags)
- * 4. A “View project” affordance
- *
- * Styling ideas that match the site:
- * - border border-border, rounded-lg, bg-surface, padding
- * - hover: -translate-y-0.5 + border-accent/30 transition
- * - tags as small text with muted color (avoid pill spam)
- *
- * Done looks like: Projects section shows your cards, not this TODO box.
- * Delete this comment block when you are finished.
- * ============================================================
+ * Interview soundbite:
+ *   “Projects.tsx maps over site.projects and passes each item into ProjectCard.
+ *    The card reads title, blurb, tags, and href from that prop and links out.”
  */
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="rounded-lg border border-dashed border-accent/40 bg-accent/5 p-5">
-      <p className="text-xs font-semibold uppercase tracking-wide text-accent">
-        YOUR TURN · ProjectCard.tsx
-      </p>
-      <p className="mt-2 font-[family-name:var(--font-display)] text-lg font-semibold text-foreground">
+    <a
+      href={project.href}
+      target={project.href.startsWith("http") ? "_blank" : undefined}
+      rel={
+        project.href.startsWith("http") ? "noopener noreferrer" : undefined
+      }
+      className="group flex h-full flex-col rounded-lg border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-accent/30"
+    >
+      <h3
+        className="font-[family-name:var(--font-display)] text-lg text-foreground transition-colors group-hover:text-accent"
+        style={{ fontWeight: 600 }}
+      >
         {project.title}
+      </h3>
+
+      {/* This is the line that surfaces your site.ts blurb on the page */}
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+        {project.blurb}
       </p>
-      <p className="mt-2 text-sm text-muted">
-        Implement the card UI for this project. Props are already wired — use{" "}
-        <code className="rounded bg-foreground/5 px-1 py-0.5 text-foreground">
-          project.blurb
-        </code>
-        ,{" "}
-        <code className="rounded bg-foreground/5 px-1 py-0.5 text-foreground">
-          project.tags
-        </code>
-        , and{" "}
-        <code className="rounded bg-foreground/5 px-1 py-0.5 text-foreground">
-          project.href
-        </code>
-        .
-      </p>
-    </article>
+
+      {project.tags.length > 0 ? (
+        <p className="mt-4 text-xs text-muted">
+          {project.tags.join(" · ")}
+        </p>
+      ) : null}
+
+      <span className="mt-4 text-sm font-medium text-accent underline-offset-4 group-hover:underline">
+        View project
+      </span>
+    </a>
   );
 }

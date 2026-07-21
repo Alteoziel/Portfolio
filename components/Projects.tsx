@@ -14,13 +14,9 @@ export function Projects() {
           Projects
         </h2>
         <p className="mt-3 text-muted">
-          Hobby builds and experiments. Add real ones in{" "}
+          Hobby builds and experiments. Edit the list in{" "}
           <code className="rounded bg-foreground/5 px-1.5 py-0.5 text-sm text-foreground">
             content/site.ts
-          </code>{" "}
-          — the cards below are rendered by your{" "}
-          <code className="rounded bg-foreground/5 px-1.5 py-0.5 text-sm text-foreground">
-            ProjectCard
           </code>
           .
         </p>
