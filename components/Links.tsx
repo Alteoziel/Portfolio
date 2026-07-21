@@ -3,8 +3,8 @@ import { site } from "@/content/site";
 const items = [
   {
     label: "Resume",
-    href: site.links.resume,
-    description: "PDF or external resume link",
+    href: "/resume",
+    description: "Clean on-page view + PDF download",
   },
   {
     label: "GitHub",

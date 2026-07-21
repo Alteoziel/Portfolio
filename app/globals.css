@@ -92,3 +92,19 @@ body {
     animation: none;
   }
 }
+
+/* react-pdf text/annotation layers sit over the canvas */
+.resume-page {
+  position: relative;
+}
+
+.resume-page .react-pdf__Page__canvas {
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.resume-page .react-pdf__Page__textContent,
+.resume-page .react-pdf__Page__annotations {
+  max-width: 100%;
+}
