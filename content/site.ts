@@ -38,7 +38,10 @@ export const site = {
     github: "https://github.com/your-username",
     linkedin: "https://www.linkedin.com/in/your-username",
     email: "you@example.com",
-    /** Put a PDF at public/resume.pdf, or point this at an external URL */
+    /**
+     * PDF file served from /public (used by /resume page + Download button).
+     * Replace public/resume.pdf with your real file — keep this path the same.
+     */
     resume: "/resume.pdf",
   },
 

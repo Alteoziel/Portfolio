@@ -28,7 +28,7 @@ Edit [`content/site.ts`](content/site.ts):
 
 - [ ] `name`, `tagline`, `bio`, `location`
 - [ ] `links.github`, `links.linkedin`, `links.email`
-- [ ] `links.resume` (and optionally add `public/resume.pdf`)
+- [ ] Drop your PDF at [`public/resume.pdf`](public/resume.pdf) (see “Resume PDF” below)
 - [ ] `hobbies` copy
 - [ ] `projects` — keep placeholders until you have real hobby projects
 
@@ -83,6 +83,24 @@ The list wrapper in [`components/Projects.tsx`](components/Projects.tsx) is alre
 | `components/Projects.tsx` | List that maps `site.projects` → `ProjectCard` |
 | `app/page.tsx` | Assembles all sections |
 | `app/globals.css` | Design tokens + light motion |
+
+## Resume PDF
+
+The site shows your resume as clean page canvases on [`/resume`](app/resume/page.tsx) (no browser PDF toolbar).
+
+1. Export / save your resume as a PDF.
+2. Replace the placeholder file: put it at **`public/resume.pdf`** (same name).
+3. Leave `site.links.resume` as `"/resume.pdf"` unless you rename the file.
+4. Open `/resume` — pages render like paper; use **Download PDF** for the raw file.
+
+How it works:
+
+| Piece | Role |
+|---|---|
+| `public/resume.pdf` | Your uploaded file (static asset) |
+| `components/ResumeViewer.tsx` | Renders PDF pages with `react-pdf` / pdf.js |
+| `app/resume/page.tsx` | Route visitors open |
+| Header / Links → `/resume` | Entry points from the home page |
 
 ## Adding a real project later
 

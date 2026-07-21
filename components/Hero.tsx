@@ -33,8 +33,14 @@ export function Hero() {
             View projects
           </a>
           <a
-            href="#contact"
+            href="/resume"
             className="rounded-md border border-border bg-surface px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/40"
+          >
+            Resume
+          </a>
+          <a
+            href="#contact"
+            className="px-2 py-2 text-sm text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
           >
             Contact
           </a>
