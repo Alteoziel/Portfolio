@@ -1,93 +1,51 @@
-# Portfolio
+# Portfolio — Coach Mode Learning Repo
 
-Personal portfolio built with **Next.js (React)** and **Tailwind CSS**, meant to be hosted on **Vercel**.
+This is **not** a finished portfolio site. It is a burnout-safe pipeline for building one from scratch while practicing full-stack work and algorithms.
 
-This project is set up so you can learn by building the important pieces yourself, while scaffolding and repetitive layout are already in place.
+**You write the code. The agent coaches.**
 
-## Quick start
+Cadence target: **3–5 hours per week.**
 
-```bash
-npm install
-npm run dev
-```
+## Start here
 
-Open [http://localhost:3000](http://localhost:3000).
+1. Read [CURRICULUM.md](CURRICULUM.md) (phases + Later Atlas).
+2. Open the **ACTIVE** brief: [briefs/00-create-next-home.md](briefs/00-create-next-home.md).
+3. Copy identity from [PROFILE.md](PROFILE.md) when you need copy.
+4. After each session, fill a row in [WEEKLY.md](WEEKLY.md).
 
-```bash
-npm run build   # production build check
-npm run lint    # eslint
-```
+## Burnout rules (non-negotiable)
 
-## YOUR TURN checklist
+- **One active track per week** — portfolio UI *or* Python labs *or* tooling, not two heavy tracks.
+- **Definition of done beats perfection** — when a brief’s checkboxes are done, stop for the week.
+- **Recognition ≠ done** — if you only followed a tutorial, rebuild once from a blank file next session.
+- **Later Atlas stays closed** — looking is fine; starting C++, Ruby, Segment Trees, etc. is not until that phase’s exit criteria say so.
+- **Ask for help after an attempt** — try for 20–30 minutes, write what you tried, then ask the coach.
 
-Do these yourself — they are the parts you can honestly say you built.
+## Session shape (3–5 hrs)
 
-### 1. Personalize your content
+| Block | Time | What |
+|---|---|---|
+| Reopen | ~10 min | Read last `WEEKLY.md` note + current brief |
+| Build | 2–3 hrs | Write code yourself (blank file > copy-paste) |
+| Recall | ~20 min | Without looking, write what you remember into notes |
+| Log | ~10 min | Update `WEEKLY.md` |
 
-Edit [`content/site.ts`](content/site.ts):
-
-- [ ] `name`, `tagline`, `bio`, `location`
-- [ ] `links.github`, `links.linkedin`, `links.email`
-- [ ] `links.resume` (and optionally add `public/resume.pdf`)
-- [ ] `hobbies` copy
-- [ ] `projects` — keep placeholders until you have real hobby projects
-
-**Done looks like:** the hero, hobbies, and links show *your* info, not “Your Name”.
-
-### 2. Build the About section
-
-Edit [`components/About.tsx`](components/About.tsx):
-
-- [ ] Replace the dashed “YOUR TURN” placeholder with a real About layout
-- [ ] Use `site.bio` (and anything else you want from `site`)
-- [ ] Match the site spacing / typography used in nearby sections
-
-**Done looks like:** visitors can read who you are; the green TODO box is gone.
-
-### 3. Project cards
-
-[`components/ProjectCard.tsx`](components/ProjectCard.tsx) renders each item from `site.projects` (title, blurb, tags, link). Add or edit projects in [`content/site.ts`](content/site.ts).
-
-**External links tip:** always include `https://` (e.g. LinkedIn). Without it, the browser treats the URL as a path on your own domain.
-
-### 4. Deploy on Vercel (you own this step)
-
-1. Push this branch / merge to GitHub (`alteoziel/portfolio`).
-2. Go to [vercel.com](https://vercel.com) → **Add New Project** → import this repo.
-3. Leave the defaults (Next.js is detected automatically) → **Deploy**.
-4. Open the live URL and confirm the site loads.
-
-**Done looks like:** you have a public URL you can put on your resume / LinkedIn.
-
-## What the agent already built
-
-- Next.js App Router + Tailwind setup
-- Shared layout, fonts (Syne + IBM Plex Sans), CSS variables, atmosphere background
-- Header, Hero, Projects list wrapper, Hobbies, Links, Contact, Footer
-- Content model in `content/site.ts` with placeholders
-- Guided starter for `About.tsx` (not finished — you build this)
-- Project cards wired through `ProjectCard.tsx`
-
-## Project map
+## Repo map
 
 | Path | Role |
 |---|---|
-| `content/site.ts` | **Your** content hub |
-| `components/About.tsx` | **Your** hand-built section (still a YOUR TURN stub) |
-| `components/ProjectCard.tsx` | Renders one project (title, blurb, tags, link) |
-| `components/Projects.tsx` | List that maps `site.projects` → `ProjectCard` |
-| `app/page.tsx` | Assembles all sections |
-| `app/globals.css` | Design tokens + light motion |
+| `briefs/` | Session-sized “build this yourself” instructions |
+| `portfolio/` | Empty until you run `create-next-app` (Phase 0) |
+| `labs/python/` | Algorithm / DSA practice (unlock by phase) |
+| `labs/sql/` | Locked until Phase 3 |
+| `projects/` | Locked full-stack project slots |
+| `infra/` | Docker / CI briefs only until Phase 3 |
+| `PROFILE.md` | Your name, bio, links |
+| `CURRICULUM.md` | Phases and exit criteria |
+| `WEEKLY.md` | Your session log |
 
-## Adding a real project later
+## Coaching contract
 
-1. Add an object to `site.projects` in `content/site.ts`.
-2. Optionally drop a screenshot in `public/projects/` and set `image`.
-3. Push — Vercel redeploys.
-
-## Stack
-
-- React + Next.js
-- Tailwind CSS v4
-- TypeScript
-- Hosting: Vercel (recommended over GitHub Pages for this stack)
+- You work a brief → commit → ask for review or “I’m stuck on X.”
+- Coach reviews for recall gaps and unlocks the next brief.
+- Coach does **not** mass-generate solutions unless you explicitly ask for a worked example **after** attempting.
