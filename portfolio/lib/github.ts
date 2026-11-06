@@ -2,7 +2,7 @@ export type Project = {
   repo: string;
   title: string;
   description: string;
-  url: string;
+  url: string | null;
   homepage: string | null;
   language: string | null;
   tags: string[];
@@ -17,6 +17,8 @@ type Overlay = {
   featured?: boolean;
   hide?: boolean;
   homepage?: string;
+  /** Private repos: show live demo only, no public GitHub link. */
+  hideGithub?: boolean;
 };
 
 type GithubRepo = {
@@ -43,19 +45,44 @@ const overlays: Record<string, Overlay> = {
     featured: true,
     homepage: "https://budget-app-mauve-five.vercel.app",
   },
+  "Kami-No-Ko": {
+    title: "Kami-No-Ko",
+    description:
+      "Japanese study PWA for playlist quizzes, focused reading and speaking drills, speech transcription grading, and whole-page book translation — built for practice that sticks.",
+    tags: ["TypeScript", "Vite", "PWA", "Speech"],
+    featured: true,
+    homepage: "https://kami-no-ko.vercel.app",
+    hideGithub: true,
+  },
+  UnlockStyleEscapeRooms: {
+    title: "Unlock Style Escape Rooms",
+    description:
+      "Browser app for Unlock-style escape room card games. Original rooms, installable shell, and a door-to-door flow for playing through each scenario.",
+    tags: ["TypeScript", "Next.js", "Games", "PWA"],
+    featured: true,
+    homepage: "https://unlockstyleescaperooms.vercel.app",
+    hideGithub: true,
+  },
+  OnceItWorks: {
+    title: "OnceItWorks",
+    description:
+      "Marketplace for software specs with a decision date. Browse, attach interest without a charge, then pay on the builder's checkout when you choose — the platform never holds money.",
+    tags: ["TypeScript", "Next.js", "Marketplace"],
+    featured: true,
+    homepage: "https://once-it-works.vercel.app",
+    hideGithub: true,
+  },
   "Shadow-AI-Gateway": {
     title: "Shadow AI Gateway",
-    description:
-      "Pre-flight security proxy for LLM traffic. Intercepts prompts before they leave the network so PII and secrets never reach public AI APIs. FastAPI gateway with OpenAI and Anthropic adapters, rate limiting, and PR governance.",
-    tags: ["Python", "FastAPI", "Security", "Docker"],
-    featured: true,
-    homepage: "https://shadow-ai-gateway.vercel.app",
+    description: "",
+    tags: [],
+    hide: true,
   },
   "Project-Omnis-AuraHUD.Life-Aura-AI-": {
     title: "AuraHUD / Project Omnis",
-    description:
-      "Voice-first everyday life OS: one HUD, one shared database, AI as an invisible router instead of a chatbox over fifteen mini-apps. Architecture, security model, and quality gates for Life Aura.",
-    tags: ["Python", "TypeScript", "AI", "Architecture"],
+    description: "",
+    tags: [],
+    hide: true,
   },
   Schoolwork: {
     title: "Schoolwork",
@@ -71,6 +98,7 @@ const overlays: Record<string, Overlay> = {
   },
 };
 
+/** Always-available cards, including private apps the public GitHub API omits. */
 const fallbackRepos: GithubRepo[] = [
   {
     name: "Budget-App",
@@ -83,25 +111,34 @@ const fallbackRepos: GithubRepo[] = [
     pushed_at: "2026-08-21T15:28:23Z",
   },
   {
-    name: "Shadow-AI-Gateway",
+    name: "Kami-No-Ko",
     description: null,
-    html_url: "https://github.com/Alteoziel/Shadow-AI-Gateway",
-    homepage: "https://shadow-ai-gateway.vercel.app",
-    language: "Python",
+    html_url: "https://github.com/Alteoziel/Kami-No-Ko",
+    homepage: "https://kami-no-ko.vercel.app",
+    language: "TypeScript",
     fork: false,
     archived: false,
-    pushed_at: "2026-08-20T00:38:48Z",
+    pushed_at: "2026-09-11T18:25:14Z",
   },
   {
-    name: "Project-Omnis-AuraHUD.Life-Aura-AI-",
+    name: "UnlockStyleEscapeRooms",
     description: null,
-    html_url:
-      "https://github.com/Alteoziel/Project-Omnis-AuraHUD.Life-Aura-AI-",
-    homepage: null,
-    language: "Python",
+    html_url: "https://github.com/Alteoziel/UnlockStyleEscapeRooms",
+    homepage: "https://unlockstyleescaperooms.vercel.app",
+    language: "TypeScript",
     fork: false,
     archived: false,
-    pushed_at: "2026-08-22T00:45:50Z",
+    pushed_at: "2026-10-21T22:36:09Z",
+  },
+  {
+    name: "OnceItWorks",
+    description: null,
+    html_url: "https://github.com/Alteoziel/OnceItWorks",
+    homepage: "https://once-it-works.vercel.app",
+    language: "TypeScript",
+    fork: false,
+    archived: false,
+    pushed_at: "2026-11-04T21:06:11Z",
   },
   {
     name: "Schoolwork",
@@ -141,7 +178,7 @@ function toProject(repo: GithubRepo): Project | null {
     repo: repo.name,
     title,
     description,
-    url: repo.html_url,
+    url: overlay?.hideGithub ? null : repo.html_url,
     homepage,
     language: repo.language,
     tags,

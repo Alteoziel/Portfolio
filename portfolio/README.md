@@ -8,7 +8,7 @@ Personal site for [Aedin Richardson](https://github.com/Alteoziel). The app live
 - Tailwind CSS
 - GitHub API (hourly revalidation) for project cards, with curated copy for empty repo descriptions
 
-Featured work includes [Alte' Budgeting](https://github.com/Alteoziel/Budget-App).
+Featured work includes Alte' Budgeting, Kami-No-Ko, Unlock Style Escape Rooms, and OnceItWorks.
 
 ## Local
 

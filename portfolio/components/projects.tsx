@@ -21,14 +21,16 @@ function ProjectLinks({ project }: { project: Project }) {
           Live demo →
         </a>
       ) : null}
-      <a
-        href={project.url}
-        className="font-mono text-[11px] tracking-[0.18em] text-copper uppercase transition-colors hover:text-fog"
-        rel="noreferrer"
-        target="_blank"
-      >
-        GitHub →
-      </a>
+      {project.url ? (
+        <a
+          href={project.url}
+          className="font-mono text-[11px] tracking-[0.18em] text-copper uppercase transition-colors hover:text-fog"
+          rel="noreferrer"
+          target="_blank"
+        >
+          GitHub →
+        </a>
+      ) : null}
     </div>
   );
 }
@@ -61,7 +63,7 @@ export function Projects({ projects }: { projects: Project[] }) {
         </p>
         <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="max-w-xl font-serif text-4xl text-fog sm:text-5xl">
-            Projects from GitHub
+            Apps and projects
           </h2>
           <a
             href={profile.github}

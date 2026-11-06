@@ -16,12 +16,14 @@ Identity facts for when you build the portfolio yourself. Copy into your site �
 - **Email:** aedinrichardson@gmail.com
 - **Resume:** add a PDF under your portfolio `public/` when ready (was `/aedin_richardson_resume.pdf`)
 
-## Projects (real + placeholders)
+## Projects
 
 Use real ones when the home page is ready for a projects section (not in Phase 0 first viewport).
 
-1. **"Shadow AI" Gateway** — Pre-flight security proxy for LLM traffic — intercepts prompts before they leave the network so PII and secrets never reach public AI APIs. Tags: Python, FastAPI, Security. https://github.com/Alteoziel/Shadow-AI-Gateway
-2. Placeholder slots — replace when you ship labs/projects from this repo.
+1. **Alte' Budgeting** — Mobile-first budgeting PWA. https://budget-app-mauve-five.vercel.app · https://github.com/Alteoziel/Budget-App
+2. **Kami-No-Ko** — Japanese study PWA (quizzes, speaking drills, book translation). https://kami-no-ko.vercel.app
+3. **Unlock Style Escape Rooms** — Unlock-style escape room card games in the browser. https://unlockstyleescaperooms.vercel.app
+4. **OnceItWorks** — Marketplace for software specs with a decision date; attach interest, pay on the builder's checkout. https://once-it-works.vercel.app
 
 ## Hobbies
 
