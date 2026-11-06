@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Aedin Richardson",
   },
   description:
-    "Full-stack developer in Cedar City, Utah. Code. Circuits. AI. Portfolio of GitHub projects including Alte' Budgeting and Shadow AI Gateway.",
+    "Full-stack developer in Cedar City, Utah. Code. Circuits. AI. Portfolio of apps including Alte' Budgeting, Kami-No-Ko, Unlock Style Escape Rooms, and OnceItWorks.",
   authors: [{ name: "Aedin Richardson" }],
   openGraph: {
     title: "Aedin Richardson",
